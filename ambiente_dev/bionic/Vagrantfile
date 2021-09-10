@@ -2,4 +2,6 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/bionic64"
     ## config.vm.network "forwarded_port", guest: 80, host: 8089
     config.vm.network "public_network", ip: "20.8.7.32"
+    config.vm.synced_folder "./config/", "/config"
+    config.vm.provision "shell", inline: "cat /config/ssh_key.pub >> .ssh/authorized_keys"
 end
